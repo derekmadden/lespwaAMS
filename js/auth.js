@@ -2,13 +2,14 @@
 
 function loginUser(){
 
+
 	var xhr = new XMLHttpRequest();
 	var data = new FormData(document.querySelector("form"));
-	xhr.open("POST", "auth?toDo=login", true);
+	xhr.open("POST", "auth.php?toDo=login", true);
 	xhr.addEventListener("readystatechange", function(){
 		if(xhr.readyState === 4 && xhr.status === 200){
 			if(xhr.responseText == "true"){
-				window.location = "index";
+				window.location = "index.php";
 			} else {
 				// alert(xhr.responseText)
 				alert("Incorrect email or password");
@@ -46,7 +47,7 @@ function registerUser(){
 	xhr.addEventListener("readystatechange", function(){
 		if(xhr.readyState === 4 && xhr.status === 200){
 			if(xhr.responseText == "true"){
-				window.location = "index";
+				window.location = "index.php";
 			} else {
 				// alert('not there');
 				alert(xhr.responseText);

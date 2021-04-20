@@ -1,5 +1,11 @@
 <?php
 
+	if ($_SESSION['live'] == 1){
+		$_REQUEST['appendPhpExtension'] = '';
+	} else {
+		$_REQUEST['appendPhpExtension'] = '.php';
+	}
+
 
 	function getSidebarHTML(){
 
@@ -22,7 +28,7 @@
 
 			      <!-- Nav Item - Dashboard -->
 			      <li class="nav-item">
-			        <a class="nav-link" href="index">
+			        <a class="nav-link" href="index'.$_REQUEST['appendPhpExtension'].'">
 			          <i class="fas fa-fw fa-tachometer-alt"></i>
 			          <span>Dashboard</span></a>
 			      </li>
@@ -59,8 +65,8 @@
 			        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 			          <div class="bg-white py-2 collapse-inner rounded">
 			          <!-- h6 class="collapse-header">To Be Completed:</h6 -->
-			          <a class="collapse-item" href="tickets">Ticket Dashboard</a>
-			          <a class="collapse-item" href="tickets-create">New Request</a>
+			          <a class="collapse-item" href="tickets'.$_REQUEST['appendPhpExtension'].'">Ticket Dashboard</a>
+			          <a class="collapse-item" href="tickets-create'.$_REQUEST['appendPhpExtension'].'">New Request</a>
 			            <!-- h6 class="collapse-header">Custom Utilities:</h6 -->
 			            <!-- a class="collapse-item" href="utilities-color.html">Colors</a -->
 			            <!-- a class="collapse-item" href="utilities-border.html">Borders</a -->
@@ -100,14 +106,14 @@
 
 			      <!-- Nav Item - Charts -->
 			      <li class="nav-item">
-			        <a class="nav-link" href="manage-users">
+			        <a class="nav-link" href="manage-users'.$_REQUEST['appendPhpExtension'].'">
 			          <i class="fas fa-fw fa-table"></i>
 			          <span>Manage Team</span></a>
 			      </li>
 
 			      	<!-- Nav Item - Assets -->
 			      	<!-- li class="nav-item active">
-			        	<a class="collapse-item" href="needs-repair">Manage Team</a>
+			        	<a class="collapse-item" href="needs-repair'.$_REQUEST['appendPhpExtension'].'">Manage Team</a>
 		          		<i class="fas fa-fw fa-table"></i>
 			          	<span>Manage Team</span></a>
 			      	</li -->
@@ -122,13 +128,13 @@
 			        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			          <div class="bg-white py-2 collapse-inner rounded">
 			            <h6 class="collapse-header">Asset Reports:</h6>
-			            <a class="collapse-item" href="assets-create">Create New Asset</a>
-			            <a class="collapse-item" href="assets">All Assets</a>
+			            <a class="collapse-item" href="assets-create'.$_REQUEST['appendPhpExtension'].'">Create New Asset</a>
+			            <a class="collapse-item" href="assets'.$_REQUEST['appendPhpExtension'].'">All Assets</a>
 			            <!-- a class="collapse-item" href="#">Major Assets</a -->
 			            <!-- a class="collapse-item" href="#">Fleets</a -->
 			            <!-- a class="collapse-item" href="#">Boats</a -->
 			            <!-- a class="collapse-item" href="urgent-needs">Urgent Needs</a -->
-			            <a class="collapse-item" href="urgent_items">Urgent Needs Report</a>
+			            <a class="collapse-item" href="urgent_items'.$_REQUEST['appendPhpExtension'].'">Urgent Needs Report</a>
 			          </div>
 			        </div>
 			      </li>

@@ -13,6 +13,12 @@
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
 
   if (!empty($_POST['ticket_no'])){
     $_REQUEST['ticket_no'] = $_POST['ticket_no'];
@@ -227,7 +233,7 @@
               <!-- The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS! -->
               <!-- Asset -->
 
-              <form action="ticket-detail" method="POST">
+              <form action="ticket-detail<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
                 <div class="form-row">
                   <div class="form-group col-md-1"></div>
                   <div class="form-group col-md-10">

@@ -13,6 +13,14 @@
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
+  
+
   buildTable();
 
   function buildTable(){
@@ -179,7 +187,7 @@
           <!-- Page Heading -->
           <!-- <h1 class="h3 mb-2 text-gray-800">Detailed View</h1> -->
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-        <form action="ticket-detail" method="POST">
+        <form action="ticket-detail<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
           <input type="hidden" id="createTicket" name="createTicket" value="1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">

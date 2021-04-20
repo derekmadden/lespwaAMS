@@ -13,6 +13,14 @@
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
+  
+
   if ($_SESSION['country'] == 'All'){
     $_REQUEST['countryTextbox'] = '<input type="text" class="form-control" id="country" name="country" placeholder="Country" required>';
   } else {
@@ -107,7 +115,7 @@
           <!-- Page Heading -->
           <!-- <h1 class="h3 mb-2 text-gray-800">Detailed View</h1> -->
           <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-        <form action="detail" method="POST">
+        <form action="detail<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
           <input type="hidden" id="createAsset" name="createAsset" value="1">
           <div class="card shadow mb-4">
             <div class="card-header py-3">

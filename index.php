@@ -16,6 +16,14 @@
     die();
   }
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
+  
+
 
 
   $_REQUEST['UrgentItemsCount'] = '';
@@ -194,6 +202,7 @@
       <!-- Main Content -->
       <div id="content">
 
+        <!-- Top Bar -->
         <?php $_SESSION['header']=getHeaderHTML();echo $_SESSION['header'];?>
 
         <!-- Begin Page Content -->

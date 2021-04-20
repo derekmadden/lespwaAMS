@@ -1,16 +1,22 @@
 <?php
 
 
-  session_start();
+	session_start();
 
-  if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true){
-    header("location: login.html");
-    die();
-  }
+	if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true){
+	header("location: login.html");
+	die();
+	}
 
-  require_once('getHTML.php');
-  require_once('db_connect.php');
-  require_once('SimpleXLSXGen.php');
+	require_once('getHTML.php');
+	require_once('db_connect.php');
+	require_once('SimpleXLSXGen.php');
+
+	if ($_SESSION['live'] == 1){
+		$_REQUEST['appendPhpExtension'] = '';
+	} else {
+		$_REQUEST['appendPhpExtension'] = '.php';
+}
 
 
 
@@ -69,7 +75,7 @@
             <div class="error mx-auto" data-text="404">404</div>
             <p class="lead text-gray-800 mb-5">Page Not Found</p>
             <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-            <a href="index">&larr; Back to Dashboard</a>
+            <a href="index<?php echo $_REQUEST['appendPhpExtension'];?>">&larr; Back to Dashboard</a>
           </div>
 
         </div>

@@ -12,6 +12,12 @@
   require_once('getHTML.php');
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
+
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
   
   
 
@@ -181,7 +187,7 @@
 
         $_REQUEST['tableRows'] .= '
               <tr>'.'
-                <th><a href="detail?id='.$row["id"].'">'. $row["item_name"] . '</a></th>'.'
+                <th><a href="detail'.$_REQUEST['appendPhpExtension'].'?id='.$row["id"].'">'. $row["item_name"] . '</a></th>'.'
                 <th>'. $row["country"] . '</th>'.'
                 <th>'. $row["campus"] . '</th>'.'
                 <th>'. $row["location"] . '</th>'.'
@@ -286,7 +292,7 @@
                 <a href="items.xlsx" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><hr>
               <div>
               Sort by:
-              <form action="assets" method="POST">
+              <form action="assets<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
                 <div class="form-row">
                   <div class="form-group col-2">
                     <select class="form-control" name="country" id="exampleFormControlSelect1">
@@ -310,7 +316,7 @@
             </div>
           </div>
 
-          <form action="detail" method="POST">
+          <form action="detail<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

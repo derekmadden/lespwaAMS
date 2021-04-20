@@ -13,6 +13,12 @@
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
 
   
 

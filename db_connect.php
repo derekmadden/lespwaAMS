@@ -1002,6 +1002,52 @@
 
 	}
 
+
+	///////////////////////////////////////////////////////////////////
+	//                   API Keys                                    //
+	///////////////////////////////////////////////////////////////////
+	function getApiKey($api){
+
+		
+
+		if ($_SESSION['live'] == 1){
+
+			$servername = "localhost";
+			$serverusername = "bplzzpmn_derek";
+			$serverpass = "M4dd3n123!";
+			$dbname = "bplzzpmn_moh_assets";
+		} else {
+			$servername = "localhost";
+			$serverusername = "root";
+			$serverpass = "derek123";
+			$dbname = "moh_ams";
+		}
+
+		$sql = "SELECT * from api_keys where title = '". $api."'";
+
+
+		// Create connection
+		$conn = new mysqli($servername, $serverusername, $serverpass, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+		  die("Connection failed: " . $conn->connect_error);
+		}
+		
+		
+		$result = $conn->query($sql);
+		$conn->close();
+
+
+	    if ($result->num_rows > 0) {
+
+	      	// output data of each row
+	      	while($row = $result->fetch_assoc()) {
+	      		return $row['api_key'];
+	        }
+	    }
+	}
+
+
 	
 
 	///////////////////////////////////////////////////////////////////

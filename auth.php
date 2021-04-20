@@ -12,6 +12,7 @@
 
 	// login('test@test.com','test');
 	// exit();
+	require_once('db_connect.php');
 
 
 
@@ -201,7 +202,7 @@
 	function syncMailchimp($email,$firstname,$lastname) {
 
 	    $list_id = '706ef9c949';
-		$authToken = '3c1265f682ab8bfea330bb140c647dae-us1';
+		$authToken = getApiKey('mailchimp');
 		// The data to send to the API
 
 		$postData = array(

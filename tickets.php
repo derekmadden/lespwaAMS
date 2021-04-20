@@ -13,6 +13,12 @@
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
   // var_dump($_SESSION);
   // exit();
 
@@ -194,7 +200,7 @@
                 <th>'. $row["priority"] . '</th>'.'
                 <th>'. $_REQUEST["assigned_worker"] . '</th>'.'
                 <th>'. $row["status"] . '</th>'.'
-                <th><a href="ticket-detail?ticket_no='.$row["ticket_no"].'">More Info</a></th>';
+                <th><a href="ticket-detail'.$_REQUEST['appendPhpExtension'].'?ticket_no='.$row["ticket_no"].'">More Info</a></th>';
 
         $count++;
       }
@@ -275,7 +281,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Maintenance Ticket Dashboard</h6><br>
                 <!-- <a href="items.xlsx" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><hr> -->
               <div>
-              <form action="tickets" method="POST">
+              <form action="tickets<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
                 <div class="form-row">
                   <div class="form-group col-2">
                     <select class="form-control" name="country" id="exampleFormControlSelect1">
@@ -301,7 +307,7 @@
             </div>
           </div>
 
-          <form action="detail" method="POST">
+          <form action="detail<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

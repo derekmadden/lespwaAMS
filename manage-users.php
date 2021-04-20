@@ -14,6 +14,12 @@
   require_once('db_connect.php');
   require_once('SimpleXLSXGen.php');
 
+  if ($_SESSION['live'] == 1){
+    $_REQUEST['appendPhpExtension'] = '';
+  } else {
+    $_REQUEST['appendPhpExtension'] = '.php';
+  }
+
 
   
 
@@ -80,7 +86,7 @@
                 <th>'. $row["role"] . '</th>'.'
                 <th>'. $row["organization"] . '</th>'.'
                 <th>'. $row["country"] . '</th>'.'
-                <th><a href="manage-users-detail?userId='.$row["id"].'">More Info</a></th>';
+                <th><a href="manage-users-detail'.$_REQUEST['appendPhpExtension'].'?userId='.$row["id"].'">More Info</a></th>';
 
         $_REQUEST['userOptions'] .='<option>'.$row["first_name"].' '.$row["last_name"].'</option>';
       }
@@ -174,7 +180,7 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Manage Team & Roles</h6>
               <hr>
-              <form action="manage-users" method="POST">
+              <form action="manage-users<?php echo $_REQUEST['appendPhpExtension'];?>" method="POST">
                 <div class="form-row">
                   <div class="col-md-1 mb-1">&nbsp;</div>
                   <div class="col-md-4 mb-3">
